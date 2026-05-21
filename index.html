@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI 공모전 보드 · 이미지 · 영상 · 노래</title>
+<style>
+  :root{
+    --bg:#0b0d12;
+    --panel:#12151c;
+    --panel-2:#171b25;
+    --border:#1f2530;
+    --text:#e7ecf3;
+    --muted:#8a93a6;
+    --accent:#7c5cff;
+    --accent-2:#3ec1d3;
+    --danger:#ff6b6b;
+    --warn:#ffb454;
+    --ok:#5ee2a0;
+    --chip:#1c2230;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Segoe UI",sans-serif;line-height:1.5}
+  a{color:inherit}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 80px}
+  header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:16px}
+  h1{font-size:26px;margin:0;letter-spacing:-.3px}
+  h1 .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));margin-right:8px;vertical-align:middle}
+  .sub{color:var(--muted);font-size:13px;margin-top:6px}
+  .meta{font-size:12px;color:var(--muted)}
+  .meta b{color:var(--text)}
+
+  .tabs{display:flex;gap:6px;margin:18px 0 10px;flex-wrap:wrap}
+  .tab{padding:10px 16px;background:var(--panel);border:1px solid var(--border);border-radius:999px;cursor:pointer;font-size:14px;color:var(--muted);transition:.15s}
+  .tab:hover{color:var(--text)}
+  .tab.active{background:linear-gradient(135deg,var(--accent),var(--accent-2));border-color:transparent;color:#fff}
+  .tab .cnt{margin-left:6px;font-size:12px;color:rgba(255,255,255,.7)}
+
+  .filters{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;padding:12px 14px;background:var(--panel);border:1px solid var(--border);border-radius:14px}
+  .chip-row{display:flex;gap:6px;flex-wrap:wrap}
+  .chip{padding:6px 12px;background:var(--chip);border:1px solid var(--border);color:var(--muted);border-radius:999px;font-size:12px;cursor:pointer;transition:.15s}
+  .chip:hover{color:var(--text)}
+  .chip.active{background:var(--text);color:#0b0d12;border-color:var(--text);font-weight:600}
+  select{background:var(--chip);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:6px 10px;font-size:12px}
+
+  .section-title{display:flex;align-items:baseline;gap:8px;margin:28px 0 12px}
+  .section-title h2{font-size:18px;margin:0}
+  .section-title .count{color:var(--muted);font-size:13px}
+  .section-title .ico{width:8px;height:8px;border-radius:50%;background:var(--ok)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+  .card{position:relative;background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:10px;transition:.18s}
+  .card:hover{transform:translateY(-2px);border-color:#2b3242}
+  .card .cat{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .badge{display:inline-block;font-size:11px;padding:3px 8px;border-radius:999px;background:var(--chip);color:var(--muted);border:1px solid var(--border)}
+  .badge.img{color:#c8b4ff;border-color:#3a2a6a}
+  .badge.vid{color:#ffd49a;border-color:#5e3f1f}
+  .badge.aud{color:#a9f0c5;border-color:#1f5a3a}
+  .badge.app{color:#9be7ff;border-color:#1d4f6b}
+  .badge.intl{color:#9fdcff;border-color:#1d4769}
+  .badge.kr{color:#ffadc6;border-color:#5e1f3a}
+  .badge.est{color:#cdd2dc;border-color:#3a3f4c;background:#1b1f29}
+  .title{font-size:15.5px;font-weight:600;letter-spacing:-.2px;line-height:1.35}
+  .row{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+  .deadline{color:var(--text);font-weight:600;white-space:nowrap;flex-shrink:0}
+  .deadline.urgent{color:var(--danger)}
+  .deadline.soon{color:var(--warn)}
+  .desc{color:var(--muted);font-size:12.5px;min-height:34px}
+  .links{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
+  .links a{font-size:12px;color:var(--accent-2);text-decoration:none;padding:5px 9px;border:1px solid var(--border);border-radius:8px;background:var(--panel-2)}
+  .links a:hover{color:#fff;border-color:var(--accent-2)}
+  .d-left{position:absolute;top:14px;right:14px;font-size:11px;color:var(--muted);background:var(--panel-2);border:1px solid var(--border);padding:3px 8px;border-radius:999px}
+  .d-left.urgent{color:#fff;background:var(--danger);border-color:var(--danger)}
+  .d-left.soon{color:#0b0d12;background:var(--warn);border-color:var(--warn);font-weight:600}
+
+  .empty{padding:30px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:14px}
+
+  .update-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:linear-gradient(135deg,var(--accent),var(--accent-2));border:none;color:#fff;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;transition:.15s}
+  .update-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(124,92,255,.25)}
+  .update-btn:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+  .update-status{margin-top:8px;font-size:12px;color:var(--muted);min-height:18px}
+  .update-status.ok{color:var(--ok)}
+  .update-status.err{color:var(--danger)}
+  .spin{display:inline-block;width:12px;height:12px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:spin 0.7s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .update-log{margin-top:10px;max-height:240px;overflow-y:auto;background:var(--panel-2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;font-family:ui-monospace,Consolas,monospace;font-size:11.5px;line-height:1.55;color:var(--muted);display:none;text-align:left}
+  .update-log.visible{display:block}
+  .update-log .ev{padding:2px 0;border-bottom:1px dashed transparent}
+  .update-log .ev.tool{color:var(--accent-2)}
+  .update-log .ev.text{color:var(--text)}
+  .update-log .ev.result{color:#888;padding-left:14px;font-size:11px}
+  .update-log .ev.done{color:var(--ok);font-weight:600}
+  .update-log .ev.system{color:#888}
+
+  footer{margin-top:50px;color:var(--muted);font-size:11.5px;text-align:center;line-height:1.7}
+  footer code{background:var(--panel);padding:2px 6px;border-radius:4px;color:var(--text)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1><span class="dot"></span>AI 공모전 보드</h1>
+      <div class="sub">이미지 · 영상 · 노래 공모전을 국내/해외로 정리. 모든 항목은 공식 사이트에서 마감일 직접 검증.</div>
+    </div>
+    <div class="meta" style="text-align:right">
+      <div>Last update: <b id="updated">-</b> · Total <b id="total">0</b>건</div>
+      <div style="margin-top:8px;display:inline-flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end">
+        <button id="cleanupBtn" class="update-btn" style="background:linear-gradient(135deg,#5ee2a0,#3ec1d3)" title="만료 항목만 즉시 제거 (검색 안 함)">🧹 만료 정리</button>
+        <select id="updateCat" style="background:var(--chip);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:6px 8px;font-size:12px">
+          <option value="all">전 카테고리</option>
+          <option value="app">기획·앱만</option>
+          <option value="video">영상만</option>
+          <option value="image">이미지만</option>
+          <option value="audio">노래만</option>
+        </select>
+        <button id="updateBtn" class="update-btn">🔄 지금 업데이트</button>
+      </div>
+      <div id="updateStatus" class="update-status"></div>
+      <div id="updateLog" class="update-log"></div>
+    </div>
+  </header>
+
+  <div class="tabs" id="regionTabs">
+    <button class="tab active" data-region="domestic">국내 공모전 <span class="cnt" id="cnt-dom">0</span></button>
+    <button class="tab" data-region="overseas">해외 공모전 <span class="cnt" id="cnt-int">0</span></button>
+  </div>
+
+  <div class="filters">
+    <div class="chip-row" id="catChips">
+      <button class="chip active" data-cat="all">전체</button>
+      <button class="chip" data-cat="image">이미지</button>
+      <button class="chip" data-cat="video">영상</button>
+      <button class="chip" data-cat="audio">노래</button>
+      <button class="chip" data-cat="app">기획·앱</button>
+    </div>
+    <div>
+      <label style="color:var(--muted);font-size:12px;margin-right:6px">정렬</label>
+      <select id="sortSel">
+        <option value="urgency">마감 임박순</option>
+        <option value="recent">최신 등록순</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="section-title"><span class="ico"></span><h2>진행중 공모전</h2><span class="count" id="ongoingCount"></span></div>
+  <div class="grid" id="ongoing"></div>
+
+  <footer>
+    모든 마감일은 공식 사이트에서 직접 fetch해 검증 완료. 일정·자격 요건은 참가 전 반드시 공식 사이트에서 재확인하세요.<br/>
+    오늘은 <code id="today">2026-05-21</code> · 마감 임박순 정렬 기본
+  </footer>
+</div>
+
+<script>
+const TODAY = (() => { const d = new Date(); d.setHours(0,0,0,0); return d; })();
+const todayStr = TODAY.toISOString().slice(0,10);
+document.getElementById("today").textContent = todayStr;
+document.getElementById("updated").textContent = todayStr;
+
+let data = [];
+
+
+const state = { region: "domestic", cat: "all", sort: "urgency" };
+
+function parseDate(s){ return s ? new Date(s) : null; }
+function daysLeft(deadline){
+  const d = parseDate(deadline);
+  if(!d) return null;
+  return Math.ceil((d - TODAY) / (1000*60*60*24));
+}
+function isOngoing(item){
+  const d = daysLeft(item.deadline);
+  return d !== null && d >= 0;
+}
+function fmtBadge(cat){
+  if(cat==="image") return '<span class="badge img">이미지</span>';
+  if(cat==="video") return '<span class="badge vid">영상</span>';
+  if(cat==="audio") return '<span class="badge aud">노래</span>';
+  if(cat==="app") return '<span class="badge app">기획·앱</span>';
+  return "";
+}
+function fmtRegionBadge(r){
+  return r==="domestic" ? '<span class="badge kr">국내</span>' : '<span class="badge intl">해외</span>';
+}
+function dLeftLabel(item){
+  const d = daysLeft(item.deadline);
+  if(d===null) return "";
+  if(d===0) return "오늘 마감";
+  return `D-${d}`;
+}
+function dLeftClass(item){
+  const d = daysLeft(item.deadline);
+  if(d===null) return "";
+  if(d <= 3) return "urgent";
+  if(d <= 10) return "soon";
+  return "";
+}
+function sortItems(items){
+  if(state.sort === "urgency"){
+    return [...items].sort((a,b)=> daysLeft(a.deadline) - daysLeft(b.deadline));
+  }
+  return [...items].sort((a,b)=> parseDate(b.addedAt) - parseDate(a.addedAt));
+}
+
+function renderCard(item){
+  const dlCls = dLeftClass(item);
+  return `
+    <article class="card">
+      <span class="d-left ${dlCls}">${dLeftLabel(item)}</span>
+      <div class="cat">${fmtRegionBadge(item.region)} ${fmtBadge(item.cat)}</div>
+      <div class="title">${item.title}</div>
+      <div class="desc">${item.desc || ""}</div>
+      <div class="row">
+        <span>${item.organizer || ""}</span>
+        <span class="deadline ${dlCls}">${item.deadline} 마감</span>
+      </div>
+      <div class="links">
+        <a href="${item.official}" target="_blank" rel="noopener">공식 공고 페이지 ↗</a>
+      </div>
+    </article>
+  `;
+}
+
+function render(){
+  let pool = data.filter(d => d.region === state.region && isOngoing(d));
+  if(state.cat !== "all") pool = pool.filter(d => d.cat === state.cat);
+  pool = sortItems(pool);
+
+  const grid = document.getElementById("ongoing");
+  grid.innerHTML = pool.length
+    ? pool.map(renderCard).join("")
+    : `<div class="empty">조건에 맞는 진행중 공모전이 없습니다.</div>`;
+
+  document.getElementById("ongoingCount").textContent = `· ${pool.length}건`;
+  document.getElementById("cnt-dom").textContent = data.filter(d=>d.region==="domestic" && isOngoing(d)).length;
+  document.getElementById("cnt-int").textContent = data.filter(d=>d.region==="overseas" && isOngoing(d)).length;
+  document.getElementById("total").textContent = data.filter(isOngoing).length;
+}
+
+document.querySelectorAll("#regionTabs .tab").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    document.querySelectorAll("#regionTabs .tab").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    state.region = btn.dataset.region;
+    render();
+  });
+});
+document.querySelectorAll("#catChips .chip").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    document.querySelectorAll("#catChips .chip").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    state.cat = btn.dataset.cat;
+    render();
+  });
+});
+document.getElementById("sortSel").addEventListener("change", e=>{
+  state.sort = e.target.value;
+  render();
+});
+
+function loadContests(){
+  return fetch("contests.json?t=" + Date.now(), { cache: "no-store" })
+    .then(r => { if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    .then(j => {
+      data = Array.isArray(j.items) ? j.items : [];
+      if (j.generated_at) document.getElementById("updated").textContent = j.generated_at;
+      render();
+    });
+}
+
+loadContests().catch(err => {
+  document.getElementById("ongoing").innerHTML =
+    '<div class="empty">contests.json 로드 실패: ' + (err.message || err) +
+    '<br><small>로컬 파일을 file://로 열면 fetch가 차단됩니다. <code>python server.py</code>로 서버를 띄우고 접속하세요.</small></div>';
+});
+
+// 업데이트 버튼
+const btn = document.getElementById("updateBtn");
+const statusEl = document.getElementById("updateStatus");
+
+function setStatus(text, cls){
+  statusEl.className = "update-status" + (cls ? " " + cls : "");
+  statusEl.textContent = text;
+}
+
+const logEl = document.getElementById("updateLog");
+
+function appendEvents(events){
+  for(const ev of events){
+    const div = document.createElement("div");
+    div.className = "ev " + (ev.kind || "raw");
+    div.textContent = ev.text;
+    logEl.appendChild(div);
+  }
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
+async function pollJob(jobId){
+  const t0 = Date.now();
+  let cursor = 0;
+  logEl.innerHTML = "";
+  logEl.classList.add("visible");
+  while(true){
+    await new Promise(r => setTimeout(r, 1500));
+    const elapsed = Math.round((Date.now() - t0) / 1000);
+    setStatus(`갱신 중... (${elapsed}s 경과, 보통 3~6분 소요)`);
+    const r = await fetch(`/api/status/${jobId}?since=${cursor}`, { cache: "no-store" });
+    if(!r.ok){ throw new Error("status 조회 실패 HTTP " + r.status); }
+    const j = await r.json();
+    if(Array.isArray(j.events) && j.events.length){
+      appendEvents(j.events);
+      cursor = j.total_events;
+    }
+    if(j.status === "done"){
+      return j;
+    }
+    if(j.status === "error"){
+      const tail = (j.stderr_tail || []).join("\n").slice(-400);
+      throw new Error((j.error || "알 수 없는 에러") + (tail ? "\n" + tail : ""));
+    }
+  }
+}
+
+const cleanupBtn = document.getElementById("cleanupBtn");
+const catSel = document.getElementById("updateCat");
+
+btn.addEventListener("click", async () => {
+  const cat = catSel.value || "all";
+  btn.disabled = true;
+  cleanupBtn.disabled = true;
+  btn.innerHTML = '<span class="spin"></span> 갱신 중...';
+  setStatus(`작업 시작 중... (카테고리: ${cat})`);
+  try {
+    const r = await fetch("/api/update?category=" + encodeURIComponent(cat), { method: "POST" });
+    if(!r.ok){ throw new Error("update API HTTP " + r.status); }
+    const { job_id } = await r.json();
+    const result = await pollJob(job_id);
+    await loadContests();
+    setStatus(`✓ 갱신 완료 (returncode=${result.returncode}). ${data.length}건 로드됨.`, "ok");
+  } catch(e){
+    setStatus("✗ 실패: " + (e.message || e), "err");
+  } finally {
+    btn.disabled = false;
+    cleanupBtn.disabled = false;
+    btn.innerHTML = '🔄 지금 업데이트';
+  }
+});
+
+cleanupBtn.addEventListener("click", async () => {
+  cleanupBtn.disabled = true;
+  btn.disabled = true;
+  cleanupBtn.innerHTML = '<span class="spin"></span> 정리 중...';
+  setStatus("만료 항목 확인 중...");
+  logEl.classList.remove("visible");
+  try {
+    const r = await fetch("/api/cleanup-expired", { method: "POST" });
+    if(!r.ok){ throw new Error("cleanup API HTTP " + r.status); }
+    const j = await r.json();
+    await loadContests();
+    if(j.removed_count === 0){
+      setStatus(`✓ 만료 항목 없음. 총 ${j.remaining}건 유지.`, "ok");
+    } else {
+      const titles = (j.removed || []).map(x => `「${x.title}」(${x.deadline})`).join(", ");
+      setStatus(`✓ ${j.removed_count}건 제거: ${titles}. 남은 ${j.remaining}건.`, "ok");
+    }
+  } catch(e){
+    setStatus("✗ 실패: " + (e.message || e), "err");
+  } finally {
+    cleanupBtn.disabled = false;
+    btn.disabled = false;
+    cleanupBtn.innerHTML = '🧹 만료 정리';
+  }
+});
+</script>
+</body>
+</html>

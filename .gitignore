@@ -1,0 +1,30 @@
+# JSON 백업 (cleanup_expired가 자동 생성)
+*.bak
+contests.json.bak
+
+# 에러 스크린샷 (개인 로컬)
+에러사항/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.venv/
+venv/
+
+# Claude Code 로컬 설정
+.claude/settings.local.json
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
