@@ -1,0 +1,6 @@
+server.py
+*.bak
+AUTO_UPDATE.md
+_ref_contests.json
+에러사항/
+.claude/
