@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-21",
+  "generated_at": "2026-05-23",
   "notice": "AI 공모전 보드 데이터. /update-contests 슬래시 커맨드로 갱신.",
   "schema": {
     "id": "string (고유)",
@@ -82,6 +82,16 @@
       "organizer": "세종특별자치시",
       "addedAt": "2026-04-06",
       "official": "https://www.sejong.go.kr/bigdata/"
+    },
+    {
+      "id": "kr-app-gg-data-2026",
+      "region": "domestic", "cat": "app",
+      "title": "2026년 경기도 공공데이터·AI 활용 창업경진대회",
+      "desc": "공공데이터 + AI 활용 창업 아이디어. 국민 누구나. 경기기업비서 온라인 신청.",
+      "deadline": "2026-05-29",
+      "organizer": "경기도경제과학진흥원",
+      "addedAt": "2026-05-23",
+      "official": "https://egbiz.or.kr/sp/supportPrjDtl.do?listUrl=supportPrjCatList&bizCyclId=PD000000053954"
     },
     {
       "id": "kr-vid-sangju-2026",

@@ -32,11 +32,13 @@ allowed-tools: Read, Edit, Write, Bash, WebSearch, WebFetch
 ## 2단계 — 신규 공고 검색
 다음 카테고리별로 WebSearch를 병렬 호출한다. 검색어에 **오늘 연도**를 반드시 포함.
 
-- `cat=app`: "{YYYY} AI 활용 공모전 진행중 아이디어 기획 서비스 개발" + "{YYYY} 공공데이터 AI 활용 경진대회"
-- `cat=video`: "{YYYY} AI 영상 공모전 진행중 마감" + "{YYYY} 생성형 AI 숏폼 공모전"
+- `cat=app`: "{YYYY} AI 활용 공모전 진행중 아이디어 기획 서비스 개발" + "{YYYY} 공공데이터 AI 활용 경진대회" + "{YYYY} 광역지자체 공공데이터 AI 창업경진대회 경기 서울 부산 인천 대구 광주 대전" + "{YYYY} 경기기업비서 OR 서울산업진흥원 OR 테크노파크 AI 공모전"
+- `cat=video`: "{YYYY} AI 영상 공모전 진행중 마감" + "{YYYY} 생성형 AI 숏폼 공모전" + "{YYYY} 시청 군청 도청 AI 영상 공모전"
 - `cat=image`: "{YYYY} AI 이미지 공모전 진행중 마감" + "{YYYY} AI 디지털 아트 공모전"
 - `cat=audio`: "{YYYY} AI 음악 공모전 진행중 마감"
 - `region=overseas`: "{YYYY} AI film festival open submission" + "{YYYY} AI art competition open call"
+
+**참고:** 지자체(광역시·도, 시·군·구) 포털은 도메인 권위가 낮고 보도자료 노출이 약해서 일반 검색에 잘 안 걸린다. 지자체 키워드와 주요 진흥기관명을 검색어에 함께 넣어야 누락을 줄일 수 있다.
 
 ## 3단계 — 후보 필터링
 검색 결과에서 다음을 만족하는 항목만 후보로 남긴다:
