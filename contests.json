@@ -382,6 +382,46 @@
       "organizer": "The Center for Contemporary Political Art (TCCP)",
       "addedAt": "2026-05-01",
       "official": "https://www.tccp.org/generate2026/"
+    },
+    {
+      "id": "kr-app-metaversedev-xr-2026",
+      "region": "domestic", "cat": "app",
+      "title": "2026년 AI·가상융합(XR) 서비스 개발자 경진대회",
+      "desc": "개발자 부문 + 크리에이터 부문. 접수 5/13 00:00 ~ 6/26 23:59. 업스테이지 Solar API 크레딧 100명·로블록스 무료 교육 40명 등 후원 특전.",
+      "deadline": "2026-06-26",
+      "organizer": "과학기술정보통신부 · 정보통신산업진흥원 · 한국전파진흥협회",
+      "addedAt": "2026-05-24",
+      "official": "https://www.metaversedev.kr/"
+    },
+    {
+      "id": "kr-img-aichallenge4all-art-2026",
+      "region": "domestic", "cat": "image",
+      "title": "2026 AI 창작대회 — 아트 with AI (AI 웹툰·포스터)",
+      "desc": "전국민 대상 AI 생성 이미지(웹툰·포스터) 부문. 접수 5/18 10:00 오픈, 지역별 예선 마감 6/7~7/5. 본선 10/24, 시상식 12월.",
+      "deadline": "2026-07-05",
+      "organizer": "과학기술정보통신부 · NIPA · KOSAC · NIA · TTA",
+      "addedAt": "2026-05-24",
+      "official": "https://aichallenge4all.or.kr/competitions/ai-creative"
+    },
+    {
+      "id": "kr-aud-aichallenge4all-sound-2026",
+      "region": "domestic", "cat": "audio",
+      "title": "2026 AI 창작대회 — 사운드 with AI (AI 동요)",
+      "desc": "유아(만 5세 이상)·초등(2014~2019년생) 대상 AI 동요 창작 부문. 5/18 10:00 오픈, 지역별 예선 마감 6/7~7/5. 본선 10/24.",
+      "deadline": "2026-07-05",
+      "organizer": "과학기술정보통신부 · NIPA · KOSAC · NIA · TTA",
+      "addedAt": "2026-05-24",
+      "official": "https://aichallenge4all.or.kr/competitions/ai-creative"
+    },
+    {
+      "id": "kr-img-aichallenge4all-story-2026",
+      "region": "domestic", "cat": "image",
+      "title": "2026 AI 창작대회 — 스토리 with AI (AI 창작동화)",
+      "desc": "유아(만 5세 이상)·초등(2014~2019년생) 대상 AI 창작동화 부문. 5/18 10:00 오픈, 지역별 예선 마감 6/7~7/5. 본선 10/24.",
+      "deadline": "2026-07-05",
+      "organizer": "과학기술정보통신부 · NIPA · KOSAC · NIA · TTA",
+      "addedAt": "2026-05-24",
+      "official": "https://aichallenge4all.or.kr/competitions/ai-creative"
     }
   ]
 }

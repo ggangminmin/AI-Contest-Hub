@@ -37,6 +37,14 @@
   .tab.active{background:linear-gradient(135deg,var(--accent),var(--accent-2));border-color:transparent;color:#fff}
   .tab .cnt{margin-left:6px;font-size:12px;color:rgba(255,255,255,.7)}
 
+  .search-row{display:flex;gap:10px;align-items:center;margin:14px 0 10px}
+  .search-input{flex:1;background:var(--panel);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:11px 14px 11px 38px;font-size:14px;outline:none;transition:.15s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238a93a6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:13px center}
+  .search-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,255,.15)}
+  .search-input::placeholder{color:var(--muted)}
+  .search-clear{background:var(--chip);border:1px solid var(--border);color:var(--muted);border-radius:10px;padding:9px 14px;cursor:pointer;font-size:12px;transition:.15s;display:none}
+  .search-clear:hover{color:var(--text)}
+  .search-clear.visible{display:inline-block}
+
   .filters{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;padding:12px 14px;background:var(--panel);border:1px solid var(--border);border-radius:14px}
   .chip-row{display:flex;gap:6px;flex-wrap:wrap}
   .chip{padding:6px 12px;background:var(--chip);border:1px solid var(--border);color:var(--muted);border-radius:999px;font-size:12px;cursor:pointer;transition:.15s}
@@ -110,11 +118,11 @@
       <div style="margin-top:8px;display:inline-flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end">
         <button id="cleanupBtn" class="update-btn" style="background:linear-gradient(135deg,#5ee2a0,#3ec1d3)" title="만료 항목만 즉시 제거 (검색 안 함)">🧹 만료 정리</button>
         <select id="updateCat" style="background:var(--chip);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:6px 8px;font-size:12px">
-          <option value="all">전 카테고리</option>
-          <option value="app">기획·앱만</option>
-          <option value="video">영상만</option>
-          <option value="image">이미지만</option>
-          <option value="audio">노래만</option>
+          <option value="all">전체</option>
+          <option value="app">기획·앱</option>
+          <option value="video">영상</option>
+          <option value="image">이미지</option>
+          <option value="audio">노래</option>
         </select>
         <button id="updateBtn" class="update-btn">🔄 지금 업데이트</button>
       </div>
@@ -126,6 +134,11 @@
   <div class="tabs" id="regionTabs">
     <button class="tab active" data-region="domestic">국내 공모전 <span class="cnt" id="cnt-dom">0</span></button>
     <button class="tab" data-region="overseas">해외 공모전 <span class="cnt" id="cnt-int">0</span></button>
+  </div>
+
+  <div class="search-row">
+    <input id="searchInput" class="search-input" type="search" placeholder="공모전 검색 (제목·주최·설명)" autocomplete="off" />
+    <button id="searchClear" class="search-clear" title="검색 초기화">초기화</button>
   </div>
 
   <div class="filters">
@@ -163,7 +176,7 @@ document.getElementById("updated").textContent = todayStr;
 let data = [];
 
 
-const state = { region: "domestic", cat: "all", sort: "urgency" };
+const state = { region: "domestic", cat: "all", sort: "urgency", q: "" };
 
 function parseDate(s){ return s ? new Date(s) : null; }
 function daysLeft(deadline){
@@ -224,9 +237,17 @@ function renderCard(item){
   `;
 }
 
+function matchesQuery(item, q){
+  if(!q) return true;
+  const hay = ((item.title||"") + " " + (item.desc||"") + " " + (item.organizer||"")).toLowerCase();
+  return hay.includes(q);
+}
+
 function render(){
+  const q = (state.q || "").toLowerCase();
   let pool = data.filter(d => d.region === state.region && isOngoing(d));
   if(state.cat !== "all") pool = pool.filter(d => d.cat === state.cat);
+  if(q) pool = pool.filter(d => matchesQuery(d, q));
   pool = sortItems(pool);
 
   const grid = document.getElementById("ongoing");
@@ -248,17 +269,50 @@ document.querySelectorAll("#regionTabs .tab").forEach(btn=>{
     render();
   });
 });
+function syncCatUI(){
+  document.querySelectorAll("#catChips .chip").forEach(b=>{
+    b.classList.toggle("active", b.dataset.cat === state.cat);
+  });
+  const sel = document.getElementById("updateCat");
+  if(sel && sel.value !== state.cat) sel.value = state.cat;
+}
+
 document.querySelectorAll("#catChips .chip").forEach(btn=>{
   btn.addEventListener("click", ()=>{
-    document.querySelectorAll("#catChips .chip").forEach(b=>b.classList.remove("active"));
-    btn.classList.add("active");
     state.cat = btn.dataset.cat;
+    syncCatUI();
     render();
   });
+});
+document.getElementById("updateCat").addEventListener("change", e=>{
+  state.cat = e.target.value;
+  syncCatUI();
+  render();
 });
 document.getElementById("sortSel").addEventListener("change", e=>{
   state.sort = e.target.value;
   render();
+});
+
+const searchInput = document.getElementById("searchInput");
+const searchClear = document.getElementById("searchClear");
+searchInput.addEventListener("input", e=>{
+  state.q = e.target.value.trim();
+  searchClear.classList.toggle("visible", state.q.length > 0);
+  render();
+});
+searchClear.addEventListener("click", ()=>{
+  searchInput.value = "";
+  state.q = "";
+  searchClear.classList.remove("visible");
+  searchInput.focus();
+  render();
+});
+searchInput.addEventListener("keydown", e=>{
+  if(e.key === "Escape" && state.q){
+    e.preventDefault();
+    searchClear.click();
+  }
 });
 
 function loadContests(){
