@@ -111,34 +111,28 @@ VALID_CATS = {"app", "video", "image", "audio", "all"}
 
 
 def cleanup_expired() -> dict:
-    """contests.json에서 마감 지난 항목을 제거하고 결과 반환. claude 호출 안 함."""
+    """[보존 정책] 만료 항목을 더 이상 삭제하지 않는다.
+    마감 지난 항목은 UI의 '마감 공고' 탭으로 분류되어 보존된다.
+    이 엔드포인트는 호환을 위해 남겨두되, 마감 건수만 집계해서 반환한다(삭제 X)."""
     path = os.path.join(ROOT, "contests.json")
     today = datetime.date.today().isoformat()
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
     items = data.get("items", [])
-    kept, removed = [], []
-    for it in items:
-        if it.get("deadline", "9999-99-99") < today:
-            removed.append({"title": it.get("title"), "deadline": it.get("deadline")})
-        else:
-            kept.append(it)
-
-    if removed:
-        # 백업 한 부 떠두고 저장
-        backup = path + ".bak"
-        shutil.copyfile(path, backup)
-        data["items"] = kept
-        data["generated_at"] = today
-        with open(path, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
-
+    closed = [
+        {"title": it.get("title"), "deadline": it.get("deadline")}
+        for it in items
+        if it.get("deadline", "9999-99-99") < today
+    ]
     return {
-        "removed_count": len(removed),
-        "removed": removed,
-        "remaining": len(kept),
+        "removed_count": 0,
+        "removed": [],
+        "archived_count": len(closed),
+        "archived": closed,
+        "remaining": len(items),
         "today": today,
+        "note": "만료 항목은 삭제하지 않고 마감 공고로 보존됩니다.",
     }
 
 

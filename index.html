@@ -31,7 +31,15 @@
   .meta{font-size:12px;color:var(--muted)}
   .meta b{color:var(--text)}
 
-  .tabs{display:flex;gap:6px;margin:18px 0 10px;flex-wrap:wrap}
+  /* 상단 보기 전환 탭 (진행중 / 마감 공고) */
+  .view-tabs{display:flex;gap:8px;margin:18px 0 6px;flex-wrap:wrap}
+  .view-tab{padding:11px 20px;background:var(--panel);border:1px solid var(--border);border-radius:14px;cursor:pointer;font-size:15px;font-weight:600;color:var(--muted);transition:.15s;display:inline-flex;align-items:center;gap:8px}
+  .view-tab:hover{color:var(--text)}
+  .view-tab.active{background:linear-gradient(135deg,var(--accent),var(--accent-2));border-color:transparent;color:#fff;box-shadow:0 4px 14px rgba(124,92,255,.25)}
+  .view-tab.archive.active{background:linear-gradient(135deg,#5b6675,#39414f)}
+  .view-tab .cnt{font-size:12px;padding:1px 8px;border-radius:999px;background:rgba(255,255,255,.12)}
+
+  .tabs{display:flex;gap:6px;margin:10px 0 10px;flex-wrap:wrap}
   .tab{padding:10px 16px;background:var(--panel);border:1px solid var(--border);border-radius:999px;cursor:pointer;font-size:14px;color:var(--muted);transition:.15s}
   .tab:hover{color:var(--text)}
   .tab.active{background:linear-gradient(135deg,var(--accent),var(--accent-2));border-color:transparent;color:#fff}
@@ -46,20 +54,29 @@
   .search-clear.visible{display:inline-block}
 
   .filters{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;padding:12px 14px;background:var(--panel);border:1px solid var(--border);border-radius:14px}
-  .chip-row{display:flex;gap:6px;flex-wrap:wrap}
+  .chip-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
   .chip{padding:6px 12px;background:var(--chip);border:1px solid var(--border);color:var(--muted);border-radius:999px;font-size:12px;cursor:pointer;transition:.15s}
   .chip:hover{color:var(--text)}
   .chip.active{background:var(--text);color:#0b0d12;border-color:var(--text);font-weight:600}
+  .chip.submit-filter.active{background:var(--ok);border-color:var(--ok);color:#08110c}
+  .chip-sep{width:1px;height:18px;background:var(--border);margin:0 2px}
   select{background:var(--chip);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:6px 10px;font-size:12px}
 
   .section-title{display:flex;align-items:baseline;gap:8px;margin:28px 0 12px}
   .section-title h2{font-size:18px;margin:0}
   .section-title .count{color:var(--muted);font-size:13px}
   .section-title .ico{width:8px;height:8px;border-radius:50%;background:var(--ok)}
+  .section-title .ico.closed{background:var(--muted)}
 
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
   .card{position:relative;background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:10px;transition:.18s}
   .card:hover{transform:translateY(-2px);border-color:#2b3242}
+  /* 제출 완료 카드 강조 */
+  .card.submitted{border-color:var(--ok);background:linear-gradient(180deg,rgba(94,226,160,.07),var(--panel) 60%);box-shadow:0 0 0 1px rgba(94,226,160,.25)}
+  .card.submitted::before{content:"✓ 제출 완료";position:absolute;top:-1px;left:16px;transform:translateY(-50%);background:var(--ok);color:#08110c;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;letter-spacing:.02em}
+  /* 마감 카드 (아카이브) */
+  .card.closed{opacity:.82}
+  .card.closed:hover{opacity:1}
   .card .cat{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
   .badge{display:inline-block;font-size:11px;padding:3px 8px;border-radius:999px;background:var(--chip);color:var(--muted);border:1px solid var(--border)}
   .badge.img{color:#c8b4ff;border-color:#3a2a6a}
@@ -69,18 +86,29 @@
   .badge.intl{color:#9fdcff;border-color:#1d4769}
   .badge.kr{color:#ffadc6;border-color:#5e1f3a}
   .badge.est{color:#cdd2dc;border-color:#3a3f4c;background:#1b1f29}
-  .title{font-size:15.5px;font-weight:600;letter-spacing:-.2px;line-height:1.35}
+  .title{font-size:15.5px;font-weight:600;letter-spacing:-.2px;line-height:1.35;padding-right:64px}
   .row{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
   .deadline{color:var(--text);font-weight:600;white-space:nowrap;flex-shrink:0}
   .deadline.urgent{color:var(--danger)}
   .deadline.soon{color:var(--warn)}
+  .deadline.closed{color:var(--muted);font-weight:500}
   .desc{color:var(--muted);font-size:12.5px;min-height:34px}
-  .links{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
+  .result-row{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--accent-2);background:var(--panel-2);border:1px solid var(--border);border-radius:8px;padding:5px 9px}
+  .result-row .lbl{color:var(--muted)}
+  .result-row b{color:var(--text);font-weight:600}
+  .links{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;align-items:center}
   .links a{font-size:12px;color:var(--accent-2);text-decoration:none;padding:5px 9px;border:1px solid var(--border);border-radius:8px;background:var(--panel-2)}
   .links a:hover{color:#fff;border-color:var(--accent-2)}
+  /* 제출 체크 토글 */
+  .submit-toggle{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);background:var(--panel-2);border:1px solid var(--border);border-radius:8px;padding:5px 10px;cursor:pointer;transition:.15s;user-select:none}
+  .submit-toggle:hover{border-color:var(--ok);color:var(--text)}
+  .submit-toggle .box{width:14px;height:14px;border:1.5px solid var(--muted);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;line-height:1;color:transparent;transition:.15s}
+  .submit-toggle.on{color:var(--ok);border-color:var(--ok);background:rgba(94,226,160,.12)}
+  .submit-toggle.on .box{background:var(--ok);border-color:var(--ok);color:#08110c}
   .d-left{position:absolute;top:14px;right:14px;font-size:11px;color:var(--muted);background:var(--panel-2);border:1px solid var(--border);padding:3px 8px;border-radius:999px}
   .d-left.urgent{color:#fff;background:var(--danger);border-color:var(--danger)}
   .d-left.soon{color:#0b0d12;background:var(--warn);border-color:var(--warn);font-weight:600}
+  .d-left.closed{color:var(--muted);background:var(--panel-2)}
 
   .empty{padding:30px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:14px}
 
@@ -111,12 +139,11 @@
   <header class="top">
     <div>
       <h1><span class="dot"></span>AI 공모전 보드</h1>
-      <div class="sub">이미지 · 영상 · 노래 공모전을 국내/해외로 정리. 모든 항목은 공식 사이트에서 마감일 직접 검증.</div>
+      <div class="sub">이미지 · 영상 · 노래 공모전을 국내/해외로 정리. 마감 공고도 보존하고, 내가 제출한 공모전은 ✓ 로 표시.</div>
     </div>
     <div class="meta" style="text-align:right">
-      <div>Last update: <b id="updated">-</b> · Total <b id="total">0</b>건</div>
+      <div>Last update: <b id="updated">-</b> · 진행중 <b id="total">0</b>건 · 마감 <b id="totalClosed">0</b>건</div>
       <div style="margin-top:8px;display:inline-flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end">
-        <button id="cleanupBtn" class="update-btn" style="background:linear-gradient(135deg,#5ee2a0,#3ec1d3)" title="만료 항목만 즉시 제거 (검색 안 함)">🧹 만료 정리</button>
         <select id="updateCat" style="background:var(--chip);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:6px 8px;font-size:12px">
           <option value="all">전체</option>
           <option value="app">기획·앱</option>
@@ -130,6 +157,12 @@
       <div id="updateLog" class="update-log"></div>
     </div>
   </header>
+
+  <!-- 진행중 / 마감 공고 보기 전환 -->
+  <div class="view-tabs" id="viewTabs">
+    <button class="view-tab active" data-view="ongoing">🟢 진행중 공모전 <span class="cnt" id="vc-ongoing">0</span></button>
+    <button class="view-tab archive" data-view="closed">🗂️ 마감 공고 <span class="cnt" id="vc-closed">0</span></button>
+  </div>
 
   <div class="tabs" id="regionTabs">
     <button class="tab active" data-region="domestic">국내 공모전 <span class="cnt" id="cnt-dom">0</span></button>
@@ -148,6 +181,8 @@
       <button class="chip" data-cat="video">영상</button>
       <button class="chip" data-cat="audio">노래</button>
       <button class="chip" data-cat="app">기획·앱</button>
+      <span class="chip-sep"></span>
+      <button class="chip submit-filter" id="submitFilter" title="내가 제출한 공모전만 보기">✅ 제출한 공고</button>
     </div>
     <div>
       <label style="color:var(--muted);font-size:12px;margin-right:6px">정렬</label>
@@ -158,12 +193,13 @@
     </div>
   </div>
 
-  <div class="section-title"><span class="ico"></span><h2>진행중 공모전</h2><span class="count" id="ongoingCount"></span></div>
+  <div class="section-title"><span class="ico" id="secIco"></span><h2 id="secTitle">진행중 공모전</h2><span class="count" id="ongoingCount"></span></div>
   <div class="grid" id="ongoing"></div>
 
   <footer>
-    모든 마감일은 공식 사이트에서 직접 fetch해 검증 완료. 일정·자격 요건은 참가 전 반드시 공식 사이트에서 재확인하세요.<br/>
-    오늘은 <code id="today">2026-05-21</code> · 마감 임박순 정렬 기본
+    모든 마감일은 공식 사이트에서 직접 fetch해 검증. 마감 지난 공고는 삭제하지 않고 <b>마감 공고</b> 탭에 보존됩니다.<br/>
+    내가 제출한 공모전은 카드의 <b>제출 체크</b>를 누르면 ✓ 로 강조되고 이 브라우저에 저장됩니다(localStorage).<br/>
+    오늘은 <code id="today">2026-06-03</code> · 일정·자격은 참가 전 공식 사이트에서 재확인하세요.
   </footer>
 </div>
 
@@ -175,8 +211,27 @@ document.getElementById("updated").textContent = todayStr;
 
 let data = [];
 
+const state = { region: "domestic", cat: "all", sort: "urgency", q: "", view: "ongoing", submittedOnly: false };
 
-const state = { region: "domestic", cat: "all", sort: "urgency", q: "" };
+/* ---------- 제출 상태 (localStorage 영속) ---------- */
+const SUBMIT_KEY = "ai_contest_submitted";
+function loadSubmitted(){
+  try { return new Set(JSON.parse(localStorage.getItem(SUBMIT_KEY) || "[]")); }
+  catch(e){ return new Set(); }
+}
+let submittedSet = loadSubmitted();
+function saveSubmitted(){
+  localStorage.setItem(SUBMIT_KEY, JSON.stringify([...submittedSet]));
+}
+function isSubmitted(item){
+  // localStorage 우선, 없으면 데이터의 submitted 시드값
+  return submittedSet.has(item.id) || (item.submitted === true && !localStorage.getItem(SUBMIT_KEY+"_init_"+item.id));
+}
+function toggleSubmitted(id){
+  if(submittedSet.has(id)) submittedSet.delete(id);
+  else submittedSet.add(id);
+  saveSubmitted();
+}
 
 function parseDate(s){ return s ? new Date(s) : null; }
 function daysLeft(deadline){
@@ -187,6 +242,10 @@ function daysLeft(deadline){
 function isOngoing(item){
   const d = daysLeft(item.deadline);
   return d !== null && d >= 0;
+}
+function isClosed(item){
+  const d = daysLeft(item.deadline);
+  return d !== null && d < 0;
 }
 function fmtBadge(cat){
   if(cat==="image") return '<span class="badge img">이미지</span>';
@@ -201,17 +260,23 @@ function fmtRegionBadge(r){
 function dLeftLabel(item){
   const d = daysLeft(item.deadline);
   if(d===null) return "";
+  if(d < 0) return "마감";
   if(d===0) return "오늘 마감";
   return `D-${d}`;
 }
 function dLeftClass(item){
   const d = daysLeft(item.deadline);
   if(d===null) return "";
+  if(d < 0) return "closed";
   if(d <= 3) return "urgent";
   if(d <= 10) return "soon";
   return "";
 }
 function sortItems(items){
+  if(state.view === "closed"){
+    // 최근 마감 먼저
+    return [...items].sort((a,b)=> parseDate(b.deadline) - parseDate(a.deadline));
+  }
   if(state.sort === "urgency"){
     return [...items].sort((a,b)=> daysLeft(a.deadline) - daysLeft(b.deadline));
   }
@@ -220,18 +285,31 @@ function sortItems(items){
 
 function renderCard(item){
   const dlCls = dLeftClass(item);
+  const closed = isClosed(item);
+  const submitted = submittedSet.has(item.id);
+  const cls = ["card"];
+  if(submitted) cls.push("submitted");
+  if(closed) cls.push("closed");
+  const resultLabel = closed ? "결과" : "결과 발표";
+  const result = item.resultDate
+    ? `<div class="result-row"><span class="lbl">🏆 ${resultLabel}</span> <b>${item.resultDate}</b></div>`
+    : "";
   return `
-    <article class="card">
+    <article class="${cls.join(' ')}" data-id="${item.id}">
       <span class="d-left ${dlCls}">${dLeftLabel(item)}</span>
       <div class="cat">${fmtRegionBadge(item.region)} ${fmtBadge(item.cat)}</div>
       <div class="title">${item.title}</div>
       <div class="desc">${item.desc || ""}</div>
+      ${result}
       <div class="row">
         <span>${item.organizer || ""}</span>
         <span class="deadline ${dlCls}">${item.deadline} 마감</span>
       </div>
       <div class="links">
         <a href="${item.official}" target="_blank" rel="noopener">공식 공고 페이지 ↗</a>
+        <button class="submit-toggle ${submitted ? 'on' : ''}" data-toggle="${item.id}" title="내가 제출했으면 체크">
+          <span class="box">✓</span>${submitted ? '제출함' : '제출 체크'}
+        </button>
       </div>
     </article>
   `;
@@ -245,21 +323,46 @@ function matchesQuery(item, q){
 
 function render(){
   const q = (state.q || "").toLowerCase();
-  let pool = data.filter(d => d.region === state.region && isOngoing(d));
+  const viewFilter = state.view === "closed" ? isClosed : isOngoing;
+  let pool = data.filter(d => d.region === state.region && viewFilter(d));
   if(state.cat !== "all") pool = pool.filter(d => d.cat === state.cat);
+  if(state.submittedOnly) pool = pool.filter(d => submittedSet.has(d.id));
   if(q) pool = pool.filter(d => matchesQuery(d, q));
   pool = sortItems(pool);
 
   const grid = document.getElementById("ongoing");
+  const emptyMsg = state.view === "closed" ? "조건에 맞는 마감 공고가 없습니다." : "조건에 맞는 진행중 공모전이 없습니다.";
   grid.innerHTML = pool.length
     ? pool.map(renderCard).join("")
-    : `<div class="empty">조건에 맞는 진행중 공모전이 없습니다.</div>`;
+    : `<div class="empty">${emptyMsg}</div>`;
 
+  // 섹션 타이틀
+  document.getElementById("secTitle").textContent = state.view === "closed" ? "마감 공고 (아카이브)" : "진행중 공모전";
+  document.getElementById("secIco").className = "ico" + (state.view === "closed" ? " closed" : "");
   document.getElementById("ongoingCount").textContent = `· ${pool.length}건`;
-  document.getElementById("cnt-dom").textContent = data.filter(d=>d.region==="domestic" && isOngoing(d)).length;
-  document.getElementById("cnt-int").textContent = data.filter(d=>d.region==="overseas" && isOngoing(d)).length;
-  document.getElementById("total").textContent = data.filter(isOngoing).length;
+
+  // 카운트
+  const ongoingAll = data.filter(isOngoing);
+  const closedAll = data.filter(isClosed);
+  document.getElementById("vc-ongoing").textContent = ongoingAll.length;
+  document.getElementById("vc-closed").textContent = closedAll.length;
+  document.getElementById("total").textContent = ongoingAll.length;
+  document.getElementById("totalClosed").textContent = closedAll.length;
+  // 지역 탭 카운트는 현재 보기 기준
+  const inView = data.filter(viewFilter);
+  document.getElementById("cnt-dom").textContent = inView.filter(d=>d.region==="domestic").length;
+  document.getElementById("cnt-int").textContent = inView.filter(d=>d.region==="overseas").length;
 }
+
+/* ---------- 이벤트 ---------- */
+document.querySelectorAll("#viewTabs .view-tab").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    document.querySelectorAll("#viewTabs .view-tab").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    state.view = btn.dataset.view;
+    render();
+  });
+});
 
 document.querySelectorAll("#regionTabs .tab").forEach(btn=>{
   btn.addEventListener("click", ()=>{
@@ -270,19 +373,24 @@ document.querySelectorAll("#regionTabs .tab").forEach(btn=>{
   });
 });
 function syncCatUI(){
-  document.querySelectorAll("#catChips .chip").forEach(b=>{
+  document.querySelectorAll("#catChips .chip[data-cat]").forEach(b=>{
     b.classList.toggle("active", b.dataset.cat === state.cat);
   });
   const sel = document.getElementById("updateCat");
   if(sel && sel.value !== state.cat) sel.value = state.cat;
 }
 
-document.querySelectorAll("#catChips .chip").forEach(btn=>{
+document.querySelectorAll("#catChips .chip[data-cat]").forEach(btn=>{
   btn.addEventListener("click", ()=>{
     state.cat = btn.dataset.cat;
     syncCatUI();
     render();
   });
+});
+document.getElementById("submitFilter").addEventListener("click", e=>{
+  state.submittedOnly = !state.submittedOnly;
+  e.currentTarget.classList.toggle("active", state.submittedOnly);
+  render();
 });
 document.getElementById("updateCat").addEventListener("change", e=>{
   state.cat = e.target.value;
@@ -291,6 +399,14 @@ document.getElementById("updateCat").addEventListener("change", e=>{
 });
 document.getElementById("sortSel").addEventListener("change", e=>{
   state.sort = e.target.value;
+  render();
+});
+
+// 제출 체크 토글 (이벤트 위임)
+document.getElementById("ongoing").addEventListener("click", e=>{
+  const btn = e.target.closest("[data-toggle]");
+  if(!btn) return;
+  toggleSubmitted(btn.dataset.toggle);
   render();
 });
 
@@ -320,6 +436,13 @@ function loadContests(){
     .then(r => { if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
     .then(j => {
       data = Array.isArray(j.items) ? j.items : [];
+      // 데이터에 submitted:true 시드가 있으면 localStorage에 1회 반영
+      data.forEach(it=>{
+        if(it.submitted === true && !submittedSet.has(it.id)){
+          submittedSet.add(it.id);
+        }
+      });
+      saveSubmitted();
       if (j.generated_at) document.getElementById("updated").textContent = j.generated_at;
       render();
     });
@@ -331,7 +454,7 @@ loadContests().catch(err => {
     '<br><small>로컬 파일을 file://로 열면 fetch가 차단됩니다. <code>python server.py</code>로 서버를 띄우고 접속하세요.</small></div>';
 });
 
-// 업데이트 버튼
+/* ---------- 업데이트 버튼 ---------- */
 const btn = document.getElementById("updateBtn");
 const statusEl = document.getElementById("updateStatus");
 
@@ -378,13 +501,11 @@ async function pollJob(jobId){
   }
 }
 
-const cleanupBtn = document.getElementById("cleanupBtn");
 const catSel = document.getElementById("updateCat");
 
 btn.addEventListener("click", async () => {
   const cat = catSel.value || "all";
   btn.disabled = true;
-  cleanupBtn.disabled = true;
   btn.innerHTML = '<span class="spin"></span> 갱신 중...';
   setStatus(`작업 시작 중... (카테고리: ${cat})`);
   try {
@@ -398,34 +519,7 @@ btn.addEventListener("click", async () => {
     setStatus("✗ 실패: " + (e.message || e), "err");
   } finally {
     btn.disabled = false;
-    cleanupBtn.disabled = false;
     btn.innerHTML = '🔄 지금 업데이트';
-  }
-});
-
-cleanupBtn.addEventListener("click", async () => {
-  cleanupBtn.disabled = true;
-  btn.disabled = true;
-  cleanupBtn.innerHTML = '<span class="spin"></span> 정리 중...';
-  setStatus("만료 항목 확인 중...");
-  logEl.classList.remove("visible");
-  try {
-    const r = await fetch("/api/cleanup-expired", { method: "POST" });
-    if(!r.ok){ throw new Error("cleanup API HTTP " + r.status); }
-    const j = await r.json();
-    await loadContests();
-    if(j.removed_count === 0){
-      setStatus(`✓ 만료 항목 없음. 총 ${j.remaining}건 유지.`, "ok");
-    } else {
-      const titles = (j.removed || []).map(x => `「${x.title}」(${x.deadline})`).join(", ");
-      setStatus(`✓ ${j.removed_count}건 제거: ${titles}. 남은 ${j.remaining}건.`, "ok");
-    }
-  } catch(e){
-    setStatus("✗ 실패: " + (e.message || e), "err");
-  } finally {
-    cleanupBtn.disabled = false;
-    btn.disabled = false;
-    cleanupBtn.innerHTML = '🧹 만료 정리';
   }
 });
 </script>

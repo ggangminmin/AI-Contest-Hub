@@ -15,7 +15,7 @@ allowed-tools: Read, Edit, Write, Bash, WebSearch, WebFetch
 - `audio` — AI 음악 공모전만
 - (없음 또는 `all`) — 전 카테고리
 
-카테고리가 지정되면 **2단계의 다른 카테고리 검색은 건너뛴다.** 만료 제거(1단계)는 항상 수행.
+카테고리가 지정되면 **2단계의 다른 카테고리 검색은 건너뛴다.** 만료 처리(1단계)는 항상 수행.
 
 ## 컨텍스트
 - 프로젝트 루트: 현재 cwd
@@ -24,10 +24,11 @@ allowed-tools: Read, Edit, Write, Bash, WebSearch, WebFetch
 - 지역: `domestic | overseas`
 - 오늘 날짜는 시스템 환경의 currentDate에서 확인. 절대 추측 금지.
 
-## 1단계 — 만료 항목 제거
+## 1단계 — 만료 항목 보존 (삭제 금지)
 1. `contests.json` 읽기.
-2. 오늘 날짜와 `deadline` 비교. **오늘 이전 마감인 항목**(deadline < today)을 items 배열에서 제거.
-3. 제거한 항목들의 title을 메모.
+2. **만료 항목은 절대 삭제하지 않는다.** deadline이 오늘 이전인 항목은 그대로 둔다 — UI가 자동으로 '마감 공고' 탭으로 분류한다.
+3. 기존 항목의 `resultDate`, `submitted` 필드는 그대로 보존한다. 이번에 결과 발표일이 새로 확인되면 `resultDate`만 갱신 가능.
+4. (참고) 오늘 막 마감된 항목 title을 메모해 보고에 활용.
 
 ## 2단계 — 신규 공고 검색
 다음 카테고리별로 WebSearch를 병렬 호출한다. 검색어에 **오늘 연도**를 반드시 포함.
@@ -64,11 +65,14 @@ allowed-tools: Read, Edit, Write, Bash, WebSearch, WebFetch
   "title": "공식 정식 명칭",
   "desc": "1줄 요약 (~80자, AI 활용 부분 명시)",
   "deadline": "YYYY-MM-DD",
+  "resultDate": "결과 발표일 (확인되면 YYYY-MM-DD, 모르면 '미정')",
   "organizer": "주최 기관",
   "addedAt": "오늘 날짜 YYYY-MM-DD",
+  "submitted": false,
   "official": "검증된 공식 URL"
 }
 ```
+- `audio` 카테고리(AI 음악·노래)는 **AI 생성 음악이 허용되는** 공모전만 추가한다. AI 불가 음악 공모전은 제외.
 id prefix 규칙:
 - `kr-` (domestic) 또는 `intl-` (overseas)
 - cat 약자: `app`, `vid`, `img`, `aud`
@@ -93,6 +97,7 @@ id prefix 규칙:
 
 ## 절대 지킬 것
 - 검증되지 않은 마감일/주최/URL을 **절대 추가하지 마라.** 의심되면 빼라.
-- 기존 items의 마감일을 임의로 수정하지 마라 (만료 제거만 허용).
+- 기존 items의 마감일을 임의로 수정하지 마라. **만료 항목 삭제 금지** (마감 공고로 보존).
+- 기존 items의 `submitted` 값은 절대 건드리지 마라 (사용자 제출 표시).
 - 한 번에 너무 많이 검색하지 마라 (5~8개 검색 → 5~10개 후보 → 검증 → 통상 2~5개 추가가 정상 사이클).
 - 새 카테고리 추가가 필요해 보이면 user에게 묻고 멈춰라. 임의로 cat 값을 만들지 마라.
