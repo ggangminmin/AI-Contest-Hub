@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-04",
+  "generated_at": "2026-06-14",
   "notice": "AI 공모전 보드 데이터. 만료 항목은 삭제하지 않고 '마감 공고'로 보존. /update-contests 로 갱신.",
   "schema": {
     "id": "string (고유)",
@@ -193,7 +193,7 @@
       "deadline": "2026-05-21",
       "organizer": "신한은행 · 한국경제신문",
       "addedAt": "2026-04-08",
-      "official": "https://www.all-con.co.kr/view/contest/536097",
+      "official": "https://www.29sfilm.com/",
       "resultDate": "2026-07 초",
       "submitted": false
     },
@@ -273,19 +273,6 @@
       "addedAt": "2026-05-04",
       "official": "https://jeongseoncontest.com/about/guide.php",
       "resultDate": "2026-06-08",
-      "submitted": false
-    },
-    {
-      "id": "kr-vid-michuhol-2026",
-      "region": "domestic",
-      "cat": "video",
-      "title": "2026 제1회 미추홀구 AI 영화제 공모전",
-      "desc": "인천 미추홀구 주제 AI 영화 공모.",
-      "deadline": "2026-05-29",
-      "organizer": "미추홀구",
-      "addedAt": "2026-02-02",
-      "official": "https://www.michuhol.go.kr/main/board/view.do?sq=300733&board_code=board_13&search=",
-      "resultDate": "2026-09-01",
       "submitted": false
     },
     {
@@ -440,7 +427,7 @@
       "deadline": "2026-06-05",
       "organizer": "무신사",
       "addedAt": "2026-05-15",
-      "official": "https://zdnet.co.kr/view/?no=20260515094745",
+      "official": "https://www.musinsa.com/content/1502215580776946764",
       "resultDate": "2026-06-24 이후",
       "submitted": false
     },
@@ -562,6 +549,19 @@
       "submitted": false
     },
     {
+      "id": "kr-vid-kforum-aiad-2026",
+      "region": "domestic",
+      "cat": "video",
+      "title": "2026 K포럼 AI AD CREATION CHALLENGE",
+      "desc": "AI 영상 플랫폼 VIVID로 제작하는 15~60초 16:9 광고영상. 초상권 프리 연예인 IP 활용. 대상 1천만원(총상금 1,300만원).",
+      "deadline": "2026-06-22",
+      "resultDate": "미정",
+      "organizer": "일간스포츠·이코노미스트 · 아캐인",
+      "addedAt": "2026-06-14",
+      "submitted": false,
+      "official": "https://www.loud.kr/contest/view/204537"
+    },
+    {
       "id": "kr-app-metaversedev-xr-2026",
       "region": "domestic",
       "cat": "app",
@@ -573,6 +573,19 @@
       "official": "https://www.metaversedev.kr/",
       "resultDate": "발표평가 09-21 / 시상식 09-30",
       "submitted": false
+    },
+    {
+      "id": "kr-vid-kosme-clean-2026",
+      "region": "domestic",
+      "cat": "video",
+      "title": "청렴한 중진공 AI+ 숏폼 공모전",
+      "desc": "생성형 AI로 제작한 60초 이내 세로형 청렴 주제 영상. 전국민 대상. 총상금 300만원.",
+      "deadline": "2026-06-26",
+      "resultDate": "미정",
+      "organizer": "중소벤처기업진흥공단",
+      "addedAt": "2026-06-14",
+      "submitted": false,
+      "official": "https://blog.naver.com/sbcblog"
     },
     {
       "id": "kr-vid-paju-prompt-2026",
@@ -599,6 +612,19 @@
       "official": "https://www.biaiff.pl/",
       "resultDate": "2026-09-17 행사",
       "submitted": false
+    },
+    {
+      "id": "kr-app-mafra-agri-2026",
+      "region": "domestic",
+      "cat": "app",
+      "title": "제11회 농업·농촌 공공데이터+AI 활용 창업경진대회",
+      "desc": "농업·농촌 공공데이터 + AI 활용 아이디어기획·제품/서비스 개발. 누구나 참여.",
+      "deadline": "2026-06-30",
+      "resultDate": "미정",
+      "organizer": "농림축산식품부 · 농림수산식품교육문화정보원",
+      "addedAt": "2026-06-14",
+      "submitted": false,
+      "official": "https://data.mafra.go.kr/contest/competitionNew.do"
     },
     {
       "id": "kr-aud-gnsm-music-2026",
@@ -692,6 +718,45 @@
       "submitted": false
     },
     {
+      "id": "kr-vid-waterweek-youth-2026",
+      "region": "domestic",
+      "cat": "video",
+      "title": "물·에너지·인공지능(AI) 청소년 숏폼 공모전",
+      "desc": "'물·에너지·인공지능: 우리의 미래를 지키다' 주제 30~60초 숏폼. AI 활용 허용. 만 9~18세 청소년 대상.",
+      "deadline": "2026-07-19",
+      "resultDate": "미정",
+      "organizer": "기후에너지환경부·한국수자원공사 등 · 한국물포럼",
+      "addedAt": "2026-06-14",
+      "submitted": false,
+      "official": "https://www.kiww.org/"
+    },
+    {
+      "id": "kr-vid-shinhan-premier-film-2026",
+      "region": "domestic",
+      "cat": "video",
+      "title": "신한 Premier Film Festa 숏폼 공모전",
+      "desc": "'신한 Premier와 함께하는 나' 주제 60초 이내 숏폼(유튜브 링크). AI 활용 영상 허용, 출연·장비 제한 없음.",
+      "deadline": "2026-07-24",
+      "resultDate": "미정",
+      "organizer": "신한투자증권",
+      "addedAt": "2026-06-14",
+      "submitted": false,
+      "official": "https://www.loud.kr/contest/view/199856/brief"
+    },
+    {
+      "id": "kr-vid-acc-democracy-2026",
+      "region": "domestic",
+      "cat": "video",
+      "title": "2026 ACC 민주·인권·평화 영상(+AI) 콘텐츠 공모전",
+      "desc": "생성형 AI로 표현하는 5·18민주화운동·민주·인권·평화 주제 30초~3분 영상(AI/복합 영상 포함).",
+      "deadline": "2026-07-31",
+      "resultDate": "미정",
+      "organizer": "국립아시아문화전당(ACC)",
+      "addedAt": "2026-06-14",
+      "submitted": false,
+      "official": "https://www.acc.go.kr/main/contents.do?PID=0712"
+    },
+    {
       "id": "intl-vid-lifeart-ai-2026",
       "region": "overseas",
       "cat": "video",
@@ -709,12 +774,12 @@
       "region": "domestic",
       "cat": "audio",
       "title": "2026 AI 창작대회 — 사운드 with AI (AI 동요)",
-      "desc": "유아(만 5세 이상)·초등(2014~2019년생) 대상 AI 동요 창작 부문. 5/18 10:00 오픈, 지역별 예선 마감 6/7~8/8(권역별 상이). 본선 10/24.",
+      "desc": "유아(만 5세 이상)·초등(2014~2019년생) 대상 AI 동요 창작 부문. 5/18 10:00 오픈, 지역별 예선 마감 6/14(부산)~8/8(광주)(권역별 상이). 본선 11~12월.",
       "deadline": "2026-08-08",
       "organizer": "과학기술정보통신부 · NIPA · KOSAC · NIA · TTA",
       "addedAt": "2026-05-24",
       "official": "https://aichallenge4all.or.kr/competitions/ai-creative",
-      "resultDate": "본선 2026-10-24, 시상 2026-12",
+      "resultDate": "본선 2026-11~12월, 시상 2026-12",
       "submitted": false
     },
     {
@@ -722,12 +787,12 @@
       "region": "domestic",
       "cat": "image",
       "title": "2026 AI 창작대회 — 아트 with AI (AI 웹툰·포스터)",
-      "desc": "전국민 대상 AI 생성 이미지(웹툰·포스터) 부문. 접수 5/18 10:00 오픈, 지역별 예선 마감 6/7~8/8(권역별 상이). 본선 10/24, 시상식 12월.",
+      "desc": "전국민 대상 AI 생성 이미지(웹툰·포스터) 부문. 접수 5/18 10:00 오픈, 지역별 예선 마감 6/14(부산)~8/8(광주)(권역별 상이). 본선 11~12월, 시상식 12월.",
       "deadline": "2026-08-08",
       "organizer": "과학기술정보통신부 · NIPA · KOSAC · NIA · TTA",
       "addedAt": "2026-05-24",
       "official": "https://aichallenge4all.or.kr/competitions/ai-creative",
-      "resultDate": "본선 2026-10-24, 시상 2026-12",
+      "resultDate": "본선 2026-11~12월, 시상 2026-12",
       "submitted": false
     },
     {
@@ -735,13 +800,65 @@
       "region": "domestic",
       "cat": "image",
       "title": "2026 AI 창작대회 — 스토리 with AI (AI 창작동화)",
-      "desc": "유아(만 5세 이상)·초등(2014~2019년생) 대상 AI 창작동화 부문. 5/18 10:00 오픈, 지역별 예선 마감 6/7~8/8(권역별 상이). 본선 10/24.",
+      "desc": "유아(만 5세 이상)·초등(2014~2019년생) 대상 AI 창작동화 부문. 5/18 10:00 오픈, 지역별 예선 마감 6/14(부산)~8/8(광주)(권역별 상이). 본선 11~12월.",
       "deadline": "2026-08-08",
       "organizer": "과학기술정보통신부 · NIPA · KOSAC · NIA · TTA",
       "addedAt": "2026-05-24",
       "official": "https://aichallenge4all.or.kr/competitions/ai-creative",
-      "resultDate": "본선 2026-10-24, 시상 2026-12",
+      "resultDate": "본선 2026-11~12월, 시상 2026-12",
       "submitted": false
+    },
+    {
+      "id": "kr-vid-kfpd-gonggam-2026",
+      "region": "domestic",
+      "cat": "video",
+      "title": "한국장애인재단 장애 공감 공모전",
+      "desc": "장애 이해·공감 주제 영상(숏폼 60초/롱폼 2분). 생성형 AI 활용 가능(활용 사실 기재 필수). 총상금 1,160만원.",
+      "deadline": "2026-08-11",
+      "resultDate": "미정",
+      "organizer": "한국장애인재단",
+      "addedAt": "2026-06-14",
+      "submitted": false,
+      "official": "https://contest.kfpd.org/page/11"
+    },
+    {
+      "id": "intl-vid-aaiff-2026",
+      "region": "overseas",
+      "cat": "video",
+      "title": "Astana AI Film Festival (AAIFF 2026)",
+      "desc": "AI 생성 10분 이내 단편(생성형 AI 핵심 필수). 상금 총 M. 테마 The Future Worth Living In.",
+      "deadline": "2026-08-15",
+      "resultDate": "행사 2026-10-26~11-01 (Astana)",
+      "organizer": "AAIFF (Kazakhstan)",
+      "addedAt": "2026-06-14",
+      "submitted": false,
+      "official": "https://www.aaiff.ai/"
+    },
+    {
+      "id": "kr-vid-michuhol-2026",
+      "region": "domestic",
+      "cat": "video",
+      "title": "2026 제1회 미추홀구 AI 영화제 공모전",
+      "desc": "제23회 미추홀미디어문화축제 대표 프로그램. 미디어 테마 AI 영화 작품 공모(5/6~8/30). 상금 600만원.",
+      "deadline": "2026-08-30",
+      "organizer": "미추홀구",
+      "addedAt": "2026-02-02",
+      "official": "https://www.loud.kr/contest/view/202388/brief",
+      "resultDate": "미정",
+      "submitted": false
+    },
+    {
+      "id": "intl-vid-sparknify-2026",
+      "region": "overseas",
+      "cat": "video",
+      "title": "Sparknify Human vs. AI Film Festival 2026",
+      "desc": "인간 제작·AI 생성 부문 분리. 7가지 핵심 감정 중심 단편. Early 무료, Regular ~. 실리콘밸리 프리미어.",
+      "deadline": "2026-08-31",
+      "resultDate": "미정",
+      "organizer": "Sparknify (Silicon Valley)",
+      "addedAt": "2026-06-14",
+      "submitted": false,
+      "official": "https://www.sparknify.com/human-vs-ai-film-festival"
     },
     {
       "id": "intl-img-tccp-generate-2026",
