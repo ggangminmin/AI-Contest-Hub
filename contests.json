@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-14",
+  "generated_at": "2026-06-26",
   "notice": "AI 공모전 보드 데이터. 만료 항목은 삭제하지 않고 '마감 공고'로 보존. /update-contests 로 갱신.",
   "schema": {
     "id": "string (고유)",
@@ -770,6 +770,19 @@
       "submitted": false
     },
     {
+      "id": "kr-vid-hansol-shortform-2026",
+      "region": "domestic",
+      "cat": "video",
+      "title": "한솔그룹 대학생 AI 숏폼 영상 공모전",
+      "desc": "'일상 속 한솔그룹의 제품·기술·솔루션' 주제. 생성형 AI 도구로 제작한 숏폼 영상(유튜브·인스타). 총상금 1,400만원, 공채 가산점.",
+      "deadline": "2026-08-02",
+      "resultDate": "미정",
+      "organizer": "한솔그룹",
+      "addedAt": "2026-06-26",
+      "submitted": false,
+      "official": "https://biz.heraldcorp.com/article/10781545"
+    },
+    {
       "id": "kr-aud-aichallenge4all-sound-2026",
       "region": "domestic",
       "cat": "audio",
@@ -809,6 +822,19 @@
       "submitted": false
     },
     {
+      "id": "kr-img-hanbok-goods-2026",
+      "region": "domestic",
+      "cat": "image",
+      "title": "2026 한국한복진흥원 한복 굿즈 디자인 공모전",
+      "desc": "[분야2] AI 기반 굿즈 디자인 — 생성형 AI로 기획한 한복 굿즈 디자인 아이디어. 총상금 1,300만원.",
+      "deadline": "2026-08-09",
+      "resultDate": "미정",
+      "organizer": "한국한복진흥원",
+      "addedAt": "2026-06-26",
+      "submitted": false,
+      "official": "https://www.loud.kr/contest/view/204401/brief"
+    },
+    {
       "id": "kr-vid-kfpd-gonggam-2026",
       "region": "domestic",
       "cat": "video",
@@ -833,6 +859,19 @@
       "addedAt": "2026-06-14",
       "submitted": false,
       "official": "https://www.aaiff.ai/"
+    },
+    {
+      "id": "kr-vid-kra-horse-2026",
+      "region": "domestic",
+      "cat": "video",
+      "title": "2026 한국마사회 AI 영상 공모전",
+      "desc": "'과거·현재·미래를 잇는 말(馬) 이야기' 주제. AI Film·30초 Short-form 2개 부문. 국적·연령 무관. 총상금 1,400만원, FilmFreeway 접수.",
+      "deadline": "2026-08-15",
+      "resultDate": "2026-10 (서울경마공원 시상식·상영회)",
+      "organizer": "한국마사회",
+      "addedAt": "2026-06-26",
+      "submitted": false,
+      "official": "https://economist.co.kr/article/view/ecn202606170031"
     },
     {
       "id": "kr-vid-michuhol-2026",
